@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cuenta Clara - Gestión de finanzas personales open source">
+    <meta name="keywords" content="finanzas, gastos, ingresos, presupuesto, dinero, ahorro">
+    <meta name="author" content="Cuenta Clara Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cuenta-clara.app">
+    <meta property="og:title" content="Cuenta Clara - Gestión de Finanzas Personales">
+    <meta property="og:description" content="Aplicación gratuita y open source para gestionar tus finanzas personales. Privacidad total con almacenamiento local.">
+    <meta property="og:image" content="/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cuenta-clara.app">
+    <meta property="twitter:title" content="Cuenta Clara - Gestión de Finanzas Personales">
+    <meta property="twitter:description" content="Aplicación gratuita y open source para gestionar tus finanzas personales. Privacidad total con almacenamiento local.">
+    <meta property="twitter:image" content="/assets/twitter-image.png">
+
+    <title>Cuenta Clara - Gestión de Finanzas Personales</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#007AFF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Cuenta Clara">
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        #root {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Loading spinner */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            z-index: 9999;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e3e3e3;
+            border-top: 4px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            
+            .loading-container {
+                background-color: #1a1a1a;
+            }
+            
+            .loading-text {
+                color: #cccccc;
+            }
+        }
+        
+        /* PWA styles */
+        .pwa-install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #007AFF;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10000;
+        }
+        
+        .pwa-install-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .pwa-install-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .pwa-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen -->
+    <div id="loading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Cargando Cuenta Clara...</div>
+    </div>
+    
+    <!-- App root -->
+    <div id="root"></div>
+    
+    <!-- PWA Install Prompt -->
+    <div id="pwa-install-prompt" class="pwa-install-prompt">
+        <div>
+            <strong>¡Instala Cuenta Clara!</strong><br>
+            <small>Accede más rápido desde tu pantalla de inicio</small>
+        </div>
+        <div>
+            <button id="pwa-install-btn" class="pwa-install-btn">Instalar</button>
+            <button id="pwa-close-btn" class="pwa-close-btn">&times;</button>
+        </div>
+    </div>
+    
+    <script>
+        // Remove loading screen when app loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    loading.style.transition = 'opacity 0.3s ease';
+                    setTimeout(() => loading.remove(), 300);
+                }
+            }, 1000);
+        });
+        
+        // PWA Install Prompt
+        let deferredPrompt;
+        const pwaPrompt = document.getElementById('pwa-install-prompt');
+        const pwaBtn = document.getElementById('pwa-install-btn');
+        const pwaClose = document.getElementById('pwa-close-btn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install prompt after a delay
+            setTimeout(() => {
+                if (!localStorage.getItem('pwa-install-dismissed')) {
+                    pwaPrompt.style.display = 'flex';
+                }
+            }, 3000);
+        });
+        
+        pwaBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('PWA instalada correctamente');
+                }
+                
+                deferredPrompt = null;
+                pwaPrompt.style.display = 'none';
+            }
+        });
+        
+        pwaClose.addEventListener('click', () => {
+            pwaPrompt.style.display = 'none';
+            localStorage.setItem('pwa-install-dismissed', 'true');
+        });
+        
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registrado correctamente: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('Error al registrar SW: ', registrationError);
+                    });
+            });
+        }
+        
+        // Prevent zoom on iOS Safari
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        
+        // Disable pull-to-refresh on mobile
+        document.body.style.overscrollBehavior = 'none';
+        
+        // Handle keyboard on mobile
+        const viewport = document.querySelector("meta[name=viewport]");
+        
+        function handleViewport() {
+            if (window.innerHeight < window.innerWidth) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+            } else {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            }
+        }
+        
+        window.addEventListener('resize', handleViewport);
+        handleViewport();
+    </script>
+</body>
+</html>

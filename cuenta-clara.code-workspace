@@ -1,0 +1,51 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.formatOnSave": true,
+        "emmet.includeLanguages": {
+            "typescript": "typescriptreact",
+            "javascript": "javascriptreact"
+        },
+        "files.associations": {
+            "*.tsx": "typescriptreact",
+            "*.jsx": "javascriptreact"
+        },
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/dist": true,
+            "**/build": true,
+            "**/.git": true,
+            "**/ios/build": true,
+            "**/android/build": true,
+            "**/android/app/build": true
+        },
+        "files.watcherExclude": {
+            "**/node_modules/**": true,
+            "**/dist/**": true,
+            "**/build/**": true,
+            "**/ios/build/**": true,
+            "**/android/build/**": true,
+            "**/android/app/build/**": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.vscode-typescript-next",
+            "bradlc.vscode-tailwindcss",
+            "ms-vscode.vscode-json",
+            "formulahendry.auto-rename-tag",
+            "christian-kohler.path-intellisense",
+            "ms-vscode.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "msjsdiag.vscode-react-native"
+        ]
+    }
+}

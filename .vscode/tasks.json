@@ -1,0 +1,149 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Ejecutar en Android",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "android"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Ejecutar en iOS",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "ios"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Ejecutar en Web",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "web"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Iniciar Metro",
+            "type": "shell",
+            "command": "npm",
+            "args": ["start"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Limpiar Proyecto",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "clean"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": false,
+            "problemMatcher": []
+        },
+        {
+            "label": "Construir para Web",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "build:web"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": false,
+            "problemMatcher": []
+        },
+        {
+            "label": "Construir APK",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "build:android"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": false,
+            "problemMatcher": []
+        },
+        {
+            "label": "Ejecutar Tests",
+            "type": "shell",
+            "command": "npm",
+            "args": ["test"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": false,
+            "problemMatcher": []
+        }
+    ]
+}
