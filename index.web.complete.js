@@ -982,8 +982,8 @@ const MonthlyFinances = () => {
   };
 
   // Filter transactions by selected month
-  const monthStart = startOfMonth(new Date(selectedMonth + '-01'));
-  const monthEnd = endOfMonth(new Date(selectedMonth + '-01'));
+  const monthStart = startOfMonth(new Date(selectedMonth));
+  const monthEnd = endOfMonth(new Date(selectedMonth));
   
   console.log('🔍 DEBUG MonthlyFinances - selectedMonth:', selectedMonth);
   console.log('🔍 DEBUG MonthlyFinances - monthStart:', monthStart);
@@ -1756,7 +1756,7 @@ const MonthlyFinances = () => {
       }}>
         <div style={{ padding: '20px', borderBottom: '1px solid #eee' }}>
           <h2 style={{ margin: 0, color: '#333' }}>
-            📋 Transacciones de {format(new Date(selectedMonth + '-01'), 'MMMM yyyy', { locale: es })}
+            📋 Transacciones de {format(new Date(selectedMonth), 'MMMM yyyy', { locale: es })}
           </h2>
         </div>
         
